@@ -75,7 +75,7 @@ public class UserController {
 
     }*/
 
-    //测试用testtest
+    //测试用
     @RequestMapping(value = "findAll")
     public List<User> findAll(){
         List<User> userList = null;
