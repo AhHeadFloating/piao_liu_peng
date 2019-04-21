@@ -61,19 +61,22 @@ public class UserController {
      * @Description ：更新用户信息
      * @Date 2019/4/19 18:16
      */
-    /*@RequestMapping(value = "updateUser")
+    @RequestMapping(value = "updateUser")
     public ResponseBean updateUser(@RequestHeader(value = "Authorization")String token, User user){
         try{
             User userInfo = JWTUtil.getUserInfo(token);
             user.setUserId(userInfo.getUserId());
-            Integer row = userService.updateByPrimaryKey(user);
-            if()
+            Integer row = userService.updateByPrimaryKeySelective(user);
+            if(row <= 0){
+                throw new Exception();
+            }
+            return new ResponseBean(200,"更新完成",null);
         }catch (Exception e){
             log.error("更新用户信息异常",e);
-            return new ResponseBean(200,"因为天气原因，并没有更新成功",null);
+            return new ResponseBean(500,"因为天气原因，并没有更新成功",null);
         }
 
-    }*/
+    }
 
     //测试用
     @RequestMapping(value = "findAll")

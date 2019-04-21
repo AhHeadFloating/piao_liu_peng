@@ -14,4 +14,6 @@ public interface UserService {
     ResponseBean register(User user);
 
     User findByPhone(String phone);
+
+    Integer updateByPrimaryKeySelective(User user);
 }

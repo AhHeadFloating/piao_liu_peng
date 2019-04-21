@@ -80,4 +80,10 @@ public class UserServiceImpl implements UserService {
         user = userMapper.selectOne(user);
         return user;
     }
+
+    @Override
+    public Integer updateByPrimaryKeySelective(User user) {
+        int i = userMapper.updateByPrimaryKeySelective(user);
+        return i;
+    }
 }
