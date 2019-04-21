@@ -1,12 +1,13 @@
 package com.miaoyunhan.piao_liu_peng.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.miaoyunhan.piao_liu_peng.configration.ResponseBean;
 import com.miaoyunhan.piao_liu_peng.entity.Account;
 import com.miaoyunhan.piao_liu_peng.entity.Bottle;
+import com.miaoyunhan.piao_liu_peng.entity.User;
 import com.miaoyunhan.piao_liu_peng.mapper.BottleMapper;
 import com.miaoyunhan.piao_liu_peng.service.AccountService;
 import com.miaoyunhan.piao_liu_peng.service.BottleService;
+import com.miaoyunhan.piao_liu_peng.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,11 +34,22 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    public Bottle findById(Long bottleId) {
+        Bottle bottle = bottleMapper.selectByPrimaryKey(bottleId);
+        return bottle;
+    }
+
+    @Override
     @Transactional
-    public ResponseBean throwBottles(Bottle bottle) {
+    public ResponseBean throwBottles(String token, String subInfo) {
+        //获取token里的信息放到瓶子对象里
+        User user = JWTUtil.getUserInfo(token);
+        Bottle bottle = new Bottle();
+        bottle.setUserId(user.getUserId());
+        bottle.setSex(user.getSex());
         bottle.setBottleId(null);
-//        bottle.setUserId();
         int insert = bottleMapper.insert(bottle);
+
         //扔一个瓶子减5个金币
         Account account = accountService.findByUserId(bottle.getUserId());
         if(account.getGold() < 5){
@@ -46,12 +58,7 @@ public class BottleServiceImpl implements BottleService {
         account.setGold(account.getGold()-5);
         accountService.updateByPrimaryKeySelective(account);
         return new ResponseBean(200,"扔了一个瓶子",null);
-    }
 
-    @Override
-    public Bottle findById(Long bottleId) {
-        Bottle bottle = bottleMapper.selectByPrimaryKey(bottleId);
-        return bottle;
     }
 }
 

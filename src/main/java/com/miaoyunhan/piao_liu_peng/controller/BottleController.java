@@ -47,15 +47,10 @@ public class BottleController {
      * @Date 2019/4/15 14:22
      */
     @RequestMapping(value = "insert")
-    public ResponseBean insert(@RequestHeader(value = "Authorization")String token, Bottle bottle){
+    public ResponseBean insert(@RequestHeader(value = "Authorization")String token,String subInfo){
         ResponseBean responseBean = null;
         try{
-            User userInfo = JWTUtil.getUserInfo(token);
-            User user = userService.findById(userInfo.getUserId());
-            bottle.setUserId(user.getUserId());
-            bottle.setSex(user.getSex());
-            //TODO 添加地区
-            responseBean = bottleService.throwBottles(bottle);
+            responseBean = bottleService.throwBottles(token,subInfo);
             return responseBean;
         }catch (Exception e){
             log.error("根据分页查询异常",e);

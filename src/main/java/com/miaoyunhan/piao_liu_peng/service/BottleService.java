@@ -8,7 +8,7 @@ import java.util.HashMap;
 public interface BottleService {
     HashMap<String, Object> findByPage();
 
-    ResponseBean throwBottles(Bottle bottle) throws Exception;
-
     Bottle findById(Long bottleId);
+
+    ResponseBean throwBottles(String token, String subInfo);
 }
