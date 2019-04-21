@@ -30,9 +30,9 @@ public class Account implements Serializable {
     private Integer userId;
 
     /**
-    * 会员到期时间
+    * 最后一次签到日期
     */
-    private Date vipTime;
+    private Date checkInDate;
 
     /**
     * 金币

@@ -75,7 +75,18 @@ public class UserController {
             log.error("更新用户信息异常",e);
             return new ResponseBean(500,"因为天气原因，并没有更新成功",null);
         }
+    }
 
+    @RequestMapping(value = "checkIn")
+    public ResponseBean checkIn(@RequestHeader(value = "Authorization")String token){
+        ResponseBean responseBean = null;
+        try{
+            responseBean = userService.checkIn(token);
+            return responseBean;
+        }catch (Exception e){
+            log.error("签到异常",e);
+            return new ResponseBean(500,"签到失败，未知原因",null);
+        }
     }
 
     //测试用

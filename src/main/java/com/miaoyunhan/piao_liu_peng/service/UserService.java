@@ -16,4 +16,6 @@ public interface UserService {
     User findByPhone(String phone);
 
     Integer updateByPrimaryKeySelective(User user);
+
+    ResponseBean checkIn(String token);
 }
