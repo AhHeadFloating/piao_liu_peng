@@ -7,7 +7,6 @@ import com.miaoyunhan.piao_liu_peng.service.AccountService;
 import com.miaoyunhan.piao_liu_peng.service.UserService;
 import com.miaoyunhan.piao_liu_peng.utils.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,7 +75,7 @@ public class UserController {
 
     }*/
 
-    //测试用
+    //测试用testtest
     @RequestMapping(value = "findAll")
     public List<User> findAll(){
         List<User> userList = null;
