@@ -1,7 +1,6 @@
 package com.miaoyunhan.piao_liu_peng.controller;
 
 import com.miaoyunhan.piao_liu_peng.configration.ResponseBean;
-import com.miaoyunhan.piao_liu_peng.entity.MyBottle;
 import com.miaoyunhan.piao_liu_peng.service.MyBottleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -16,11 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyBottleController {
     @Autowired
     private MyBottleService myBottleService;
-/*
-    @RequestMapping(value = "insert")
-    public ResponseBean insert(MyBottle myBottle){
-
-    }*/
 
     @RequestMapping(value = "findByPage")
 //    @RequiresAuthentication
