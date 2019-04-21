@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.miaoyunhan.piao_liu_peng.mapper.MyBottleMapper">
+    <select id="findByPage" resultType="com.miaoyunhan.piao_liu_peng.entity.MyBottle">
+        select * from my_bottle where first_send_user_id=#{userId} or first_accept_user_id=#{userId}
+    </select>
+</mapper>

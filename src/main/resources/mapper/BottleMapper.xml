@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.miaoyunhan.piao_liu_peng.mapper.BottleMapper">
+    <select id="findByRandomPage" resultType="com.miaoyunhan.piao_liu_peng.entity.Bottle">
+        select * from bottle order by rand() limit 5;
+    </select>
+</mapper>
