@@ -49,7 +49,10 @@ public class BottleServiceImpl implements BottleService {
         bottle.setBottleId(null);
         int insert = bottleMapper.insert(bottle);
 
-        //扔一个瓶子减5个金币
+        /**
+         * 扔一个瓶子减5个金币
+         * 一个瓶子就相当于5个金币
+         */
         Account account = accountService.findByUserId(bottle.getUserId());
         if(account.getGold() < 5){
             return new ResponseBean(500,"你的账户瓶子用完啦，快去看广告赚瓶子",null);

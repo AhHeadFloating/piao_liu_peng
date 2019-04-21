@@ -36,15 +36,20 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResponseBean register(User user) {
-        List<User> userList = userMapper.select(user);
+        User userQuery = new User();
+        userQuery.setPhone(user.getPhone());
+        List<User> userList = userMapper.select(userQuery);
         ResponseBean responseBean = null;
+        //如果没有注册过才可以注册
         if(userList == null || userList.size() == 0){
+            //注册完用户性别默认是女，地址默认是北京
             if(user.getSex() == null){
                 user.setSex(0);
             }
             if(user.getAddress() == null){
                 user.setAddress("北京");
             }
+            //创建随机昵称
             Random random = new Random();
             String name = "";
             for (int i = 0; i < 7; i++) {
@@ -53,9 +58,11 @@ public class UserServiceImpl implements UserService {
             }
             user.setNickName(name);
             userMapper.insertSelective(user);
+
+            //创建账户，默认20个金币
             Account account = new Account();
             account.setUserId(user.getUserId());
-            account.setGold(200);
+            account.setGold(20);
             accountService.insertSelective(account);
             responseBean = new ResponseBean(200,"注册成功啦",null);
 
