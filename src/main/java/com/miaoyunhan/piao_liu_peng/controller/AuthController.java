@@ -29,9 +29,9 @@ public class AuthController {
     }
 
     @RequestMapping("/login")
-    public ResponseBean login(@RequestParam("phone") String phone,
-                              @RequestParam("password") String password,
-                              @RequestParam("loginDeviceId") String loginDeviceId) {
+    public ResponseBean login(@RequestParam(name = "phone",required = true) String phone,
+                              @RequestParam(name = "password",required = true) String password,
+                              @RequestParam(name = "loginDeviceId",required = true) String loginDeviceId) {
         User user = userService.findByPhone(phone);
         if (user.getPassword().equals(password)) {
             user.setLoginDeviceId(loginDeviceId);

@@ -3,10 +3,9 @@ package com.miaoyunhan.piao_liu_peng.controller;
 
 import com.miaoyunhan.piao_liu_peng.configration.ResponseBean;
 import com.miaoyunhan.piao_liu_peng.entity.Bottle;
-import com.miaoyunhan.piao_liu_peng.entity.User;
 import com.miaoyunhan.piao_liu_peng.service.BottleService;
 import com.miaoyunhan.piao_liu_peng.service.UserService;
-import com.miaoyunhan.piao_liu_peng.utils.JWTUtil;
+import com.miaoyunhan.piao_liu_peng.utils.ObjDataCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -50,6 +47,9 @@ public class BottleController {
     public ResponseBean insert(@RequestHeader(value = "Authorization")String token,String subInfo){
         ResponseBean responseBean = null;
         try{
+            if(subInfo == null || "".equals(subInfo.trim())){
+                return new ResponseBean(500,"缺少参数：subInfo",null);
+            }
             responseBean = bottleService.throwBottles(token,subInfo);
             return responseBean;
         }catch (Exception e){
