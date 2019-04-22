@@ -1,6 +1,5 @@
 package com.miaoyunhan.piao_liu_peng.shiro;
 
-import com.miaoyunhan.piao_liu_peng.database.UserBean;
 import com.miaoyunhan.piao_liu_peng.entity.User;
 import com.miaoyunhan.piao_liu_peng.service.UserService;
 import com.miaoyunhan.piao_liu_peng.utils.JWTUtil;
