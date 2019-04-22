@@ -51,6 +51,16 @@ public class User implements Serializable {
     private Integer age;
 
     /**
+     * 注册设备号
+     */
+    private String RegisterDeviceId;
+
+    /**
+     * 最近一次登录的设备号
+     */
+    private String loginDeviceId;
+
+    /**
      * 地址
      */
     private String address;

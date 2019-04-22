@@ -30,9 +30,12 @@ public class AuthController {
 
     @RequestMapping("/login")
     public ResponseBean login(@RequestParam("phone") String phone,
-                              @RequestParam("password") String password) {
+                              @RequestParam("password") String password,
+                              @RequestParam("loginDeviceId") String loginDeviceId) {
         User user = userService.findByPhone(phone);
         if (user.getPassword().equals(password)) {
+            user.setLoginDeviceId(loginDeviceId);
+            userService.updateByPrimaryKeySelective(user);
             return new ResponseBean(200, "Login success", JWTUtil.sign(user, password));
         } else {
             throw new UnauthorizedException();
